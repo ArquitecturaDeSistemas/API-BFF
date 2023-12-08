@@ -55,16 +55,36 @@ export class UserResolver {
   }
 
   @Mutation(() => UserModel)
-  async updateUser(@Args('updateUserInput') input: UpdateUserInput): Promise<UserModel> {
-    const request: UpdateUserRequest = { 
-      id: input.id,
-      nombre: input.nombre,
-      apellido: input.apellido,
-      correo: input.correo,
-     };
-    const response = await this.userClient.updateUser(request).toPromise();
-    return this.transformUserResponse(response);
+async updateUser(@Args('updateUserInput') input: UpdateUserInput): Promise<UserModel> {
+  const request: UpdateUserRequest = {
+    id: input.id,
+};
+  if (input.nombre !== undefined) {
+    request.nombre = input.nombre;
   }
+  if (input.apellido !== undefined) {
+    request.apellido = input.apellido;
+  }
+  if (input.correo !== undefined) {
+    request.correo = input.correo;
+  }
+  console.log("request", request);
+  const response = await this.userClient.updateUser(request as UpdateUserRequest).toPromise();
+  return this.transformUserResponse(response);
+}
+
+
+  // @Mutation(() => UserModel)
+  // async updateUser(@Args('updateUserInput') input: UpdateUserInput): Promise<UserModel> {
+  //   const request: UpdateUserRequest = { 
+  //     id: input.id,
+  //     nombre: input.nombre,
+  //     apellido: input.apellido,
+  //     correo: input.correo,
+  //    };
+  //   const response = await this.userClient.updateUser(request).toPromise();
+  //   return this.transformUserResponse(response);
+  // }
 
   @Mutation(() => RespuestaEliminacion)
   async deleteUser(@Args('id') id: string): Promise<RespuestaEliminacion> {
