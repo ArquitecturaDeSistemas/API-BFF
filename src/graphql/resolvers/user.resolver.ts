@@ -73,8 +73,6 @@ export class UserResolver {
   }
 
   private transformUserResponse(response: any): UserModel {
-    // Transformar la respuesta de gRPC al modelo de GraphQL
-    // Ajustar según las propiedades y la estructura de tus respuestas
     return {
       id: response.id,
       nombre: response.nombre,
@@ -84,8 +82,6 @@ export class UserResolver {
   }
 
   private transformEliminacionRespuesta(response: any): RespuestaEliminacion {
-    // Transformar la respuesta de gRPC al modelo de GraphQL
-    // Ajustar según las propiedades y la estructura de tus respuestas
     return {
       mensaje: response.mensaje,
         };
