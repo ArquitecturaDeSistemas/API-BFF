@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/ArquitecturaDeSistemas/usermicroservice/src/proto";
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+  rpc LoginUser (LoginRequest) returns (LoginResponse);
+  rpc LogoutUser (LogoutRequest) returns (LogoutResponse);
+}
+
+message CreateUserRequest {
+  string nombre = 1;
+  string apellido = 2;
+  string correo = 3;
+  string contrasena = 4;
+}
+
+message CreateUserResponse {
+  string id = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string correo = 4;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  string id = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string correo = 4;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string correo = 4;
+}
+
+message UpdateUserResponse {
+  string id = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string correo = 4;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {
+  string mensaje = 1;
+}
+
+message ListUsersRequest {
+}
+
+message ListUsersResponse {
+  repeated User users = 1;
+}
+
+message User{
+  string id = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string correo = 4;
+}
+
+
+message LoginRequest{
+  string correo = 1;
+  string contrasena = 2;
+}
+
+message LoginResponse{
+  string token = 1;
+  User user = 2;
+}
+
+message LogoutRequest{
+  string userID = 1;
+}
+
+message LogoutResponse{
+  string mensaje = 1;
+}

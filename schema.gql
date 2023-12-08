@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserModel {
+  id: ID!
+  nombre: String!
+  apellido: String!
+  correo: String!
+}
+
+type RespuestaEliminacion {
+  mensaje: ID!
+}
+
+type Query {
+  getUser(id: String!): UserModel!
+  listUsers: [UserModel!]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UserModel!
+  updateUser(updateUserInput: UpdateUserInput!): UserModel!
+  deleteUser(id: String!): RespuestaEliminacion!
+}
+
+input CreateUserInput {
+  nombre: String!
+  apellido: String!
+  correo: String!
+  contrasena: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  nombre: String
+  apellido: String
+  correo: String
+}
