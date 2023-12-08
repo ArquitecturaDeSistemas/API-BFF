@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 
-export class CreateUserRequest {
-  readonly nombre: string;
-  readonly apellido: string;
-  readonly correo: string;
-  readonly contrasena: string;
+export interface CreateUserRequest {
+  nombre: string;
+  apellido: string;
+  correo: string;
+  contrasena: string;
 }
 export interface CreateUserResponse {
   id: string;
@@ -15,6 +15,7 @@ export interface GetUserRequest {
 }
 
 export interface GetUserResponse {
+  
   id: string;
   nombre: string;
   apellido: string;

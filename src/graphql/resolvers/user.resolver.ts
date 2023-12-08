@@ -20,6 +20,7 @@ import { UserClient } from '../../grpc/clients/user.client';
 import { UserModel } from '../models/user.model';
 import { CreateUserInput, UpdateUserInput } from '../models/inputs';
 import { CreateUserRequest, UpdateUserRequest } from 'src/grpc/interfaces/user.dto';
+import { RespuestaEliminacion } from '../models/salidas';
 
 
 
@@ -47,7 +48,9 @@ export class UserResolver {
       correo: input.correo,
       contrasena: input.contrasena,
      };
+     console.log("request", request);
     const response = await this.userClient.createUser(request).toPromise();
+    console.log("response", response)
     return this.transformUserResponse(response);
   }
 
@@ -63,10 +66,10 @@ export class UserResolver {
     return this.transformUserResponse(response);
   }
 
-  @Mutation(() => UserModel)
-  async deleteUser(@Args('id') id: string): Promise<UserModel> {
+  @Mutation(() => RespuestaEliminacion)
+  async deleteUser(@Args('id') id: string): Promise<RespuestaEliminacion> {
     const response = await this.userClient.deleteUser({ id }).toPromise();
-    return this.transformUserResponse(response);
+    return this.transformEliminacionRespuesta(response);
   }
 
   private transformUserResponse(response: any): UserModel {
@@ -78,5 +81,13 @@ export class UserResolver {
       apellido: response.apellido,
       correo: response.correo,
     };
+  }
+
+  private transformEliminacionRespuesta(response: any): RespuestaEliminacion {
+    // Transformar la respuesta de gRPC al modelo de GraphQL
+    // Ajustar según las propiedades y la estructura de tus respuestas
+    return {
+      mensaje: response.mensaje,
+        };
   }
 }

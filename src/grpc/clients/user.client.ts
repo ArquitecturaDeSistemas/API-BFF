@@ -47,6 +47,7 @@ export class UserClient implements OnModuleInit {
   }
 
   createUser(data: CreateUserRequest): Observable<CreateUserResponse> {
+    console.log(data)
     return this.userService.createUser(data);
   }
 

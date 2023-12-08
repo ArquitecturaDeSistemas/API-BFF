@@ -9,6 +9,10 @@ type UserModel {
   correo: String!
 }
 
+type RespuestaEliminacion {
+  mensaje: ID!
+}
+
 type Query {
   getUser(id: String!): UserModel!
   listUsers: [UserModel!]!
@@ -17,7 +21,7 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserModel!
   updateUser(updateUserInput: UpdateUserInput!): UserModel!
-  deleteUser(id: String!): UserModel!
+  deleteUser(id: String!): RespuestaEliminacion!
 }
 
 input CreateUserInput {
