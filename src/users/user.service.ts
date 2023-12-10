@@ -53,8 +53,5 @@ export class UserService {
   listUsers(data: ListUsersRequest): Observable<ListUsersResponse> {
     return this.userGrpcService.listUsers(data);
   }
-
-  
-
-
 }
+

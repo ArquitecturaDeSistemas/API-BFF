@@ -3,6 +3,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { CircuitBreakerModule } from 'src/circuit-breaker/circuit-breaker.modules';
 import { UserResolver } from 'src/graphql/resolvers/user.resolver';
 import { UserClient } from 'src/grpc/clients/user.client';
 
@@ -22,6 +23,8 @@ import { UserClient } from 'src/grpc/clients/user.client';
         },
       },
     ]),
+    CircuitBreakerModule
+
   ],
   providers: [UserResolver, UserClient],
   exports: [UserClient],

@@ -10,7 +10,16 @@ type UserModel {
 }
 
 type RespuestaEliminacion {
-  mensaje: ID!
+  mensaje: String!
+}
+
+type PayloadModel {
+  token: String!
+  user: UserModel!
+}
+
+type LogoutMensaje {
+  mensaje: String!
 }
 
 type Query {
@@ -21,6 +30,8 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserModel!
   updateUser(updateUserInput: UpdateUserInput!): UserModel!
+  loginUser(loginUserInput: LoginUserInput!): PayloadModel!
+  logoutUser(id: String!): LogoutMensaje!
   deleteUser(id: String!): RespuestaEliminacion!
 }
 
@@ -36,4 +47,9 @@ input UpdateUserInput {
   nombre: String
   apellido: String
   correo: String
+}
+
+input LoginUserInput {
+  correo: String!
+  contrasena: String!
 }

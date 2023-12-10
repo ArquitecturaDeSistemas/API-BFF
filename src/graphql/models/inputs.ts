@@ -37,3 +37,12 @@ export class DeleteUserInput {
   @Field(() => ID)
   id: string;
 }
+
+@InputType()
+export class LoginUserInput {
+  @Field()
+  correo: string;
+
+  @Field()
+  contrasena: string;
+}

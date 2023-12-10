@@ -43,12 +43,26 @@ export interface DeleteUserRequest {
 export interface DeleteUserResponse {
   mensaje: string;
 }
-
 export interface ListUsersRequest {}
-
 export interface ListUsersResponse {
   users: User[];
 }
+export interface LoginUserRequest {
+  correo: string;
+  contrasena: string;
+}
+export interface LoginUserResponse {
+  token: string;
+  user: User;
+}
+export interface LogoutUserRequest {
+  userID: string;
+}
+export interface LogoutUserResponse {
+  mensaje: string;
+}
+
+
 
 export interface User {
   id: string;

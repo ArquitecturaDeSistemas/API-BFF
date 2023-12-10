@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Field, ObjectType, ID } from '@nestjs/graphql';
+import { UserModel } from './user.model';
 
 @ObjectType()
 export class RespuestaEliminacion {
-  @Field(() => ID)
+  @Field()
   mensaje: string;
 
 }
@@ -13,15 +14,33 @@ export class UserUpdate{
   @Field(() => ID)
   id: string;
 
-  @Field(() => ID)
+  @Field()
   nombre: string;
 
-  @Field(() => ID)
+  @Field()
   apellido: string;
 
-  @Field(() => ID)
+  @Field()
   correo: string;
 
-  @Field(() => ID)
+  @Field()
   contrasena: string;
+}
+
+@ObjectType()
+export class PayloadModel {
+
+  @Field()
+  token: string;
+
+  @Field()
+  user: UserModel; 
+
+}
+
+@ObjectType()
+export class LogoutMensaje {
+  @Field()
+  mensaje: string;
+
 }
