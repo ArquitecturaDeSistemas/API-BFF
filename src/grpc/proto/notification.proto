@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/ArquitecturaDeSistemas/notificationmicroservice/src/proto";
+
+
+// Definir el servicio
+service NotificacionService {
+  rpc CrearNotificacion(CrearNotificacionRequest) returns (NotificacionResponse);
+  rpc ObtenerNotificacion(NotificacionRequest) returns (NotificacionResponse);
+  rpc ListarNotificaciones(ListarNotificacionesRequest) returns (ListarNotificacionesResponse);
+  rpc EliminarNotificacion(EliminarNotificacionRequest) returns (RespuestaEliminacion);
+  rpc NotificacionesPorUsuario(NotificacionesPorUsuarioRequest) returns (NotificacionesPorUsuarioResponse);
+}
+
+
+// Definir los mensajes para las peticiones y respuestas
+message CrearNotificacionRequest {
+  string usuarioId = 1;
+  string tareaId = 2;
+  string titulo = 3;
+}
+
+message NotificacionResponse {
+  string id = 1;
+  string usuarioId = 2;
+  string tareaId = 3;
+  string titulo = 4;
+}
+
+message NotificacionRequest {
+  string id = 1;
+}
+
+message ListarNotificacionesRequest {
+
+}
+
+message ListarNotificacionesResponse {
+  repeated NotificacionResponse notificaciones = 1;
+}
+
+message EliminarNotificacionRequest {
+  string id = 1;
+}
+
+message RespuestaEliminacion {
+  string mensaje = 1;
+}
+
+message NotificacionesPorUsuarioRequest {
+  string usuarioId = 1;
+}
+message NotificacionesPorUsuarioResponse {
+  repeated NotificacionResponse notificaciones = 1;
+}

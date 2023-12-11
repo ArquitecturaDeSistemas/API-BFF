@@ -3,6 +3,7 @@
 
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { NotificacionModule } from 'src/notificaciones/noti.module';
 import { UserModule } from 'src/users/user.module';
 
 @Module({
@@ -12,6 +13,8 @@ import { UserModule } from 'src/users/user.module';
       // Otras configuraciones como playground, context, etc.
     }),
     UserModule,
+    NotificacionModule
+    
   ],
   
 })

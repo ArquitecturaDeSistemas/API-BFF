@@ -22,9 +22,19 @@ type LogoutMensaje {
   mensaje: String!
 }
 
+type NotificacionModel {
+  id: ID!
+  titulo: String!
+  usuarioId: Float!
+  tareaId: Float!
+}
+
 type Query {
   getUser(id: String!): UserModel!
   listUsers: [UserModel!]!
+  obtenerNotificacion(id: Float!): NotificacionModel!
+  listarNotificaciones: [NotificacionModel!]!
+  notificacionesPorUsuario(usuarioId: Float!): [NotificacionModel!]!
 }
 
 type Mutation {
@@ -33,6 +43,8 @@ type Mutation {
   loginUser(loginUserInput: LoginUserInput!): PayloadModel!
   logoutUser(id: String!): LogoutMensaje!
   deleteUser(id: String!): RespuestaEliminacion!
+  createNotificacion(crearNotificacionInput: CrearNotificacionInput!): NotificacionModel!
+  deleteNotificacion(id: Float!): RespuestaEliminacion!
 }
 
 input CreateUserInput {
@@ -52,4 +64,10 @@ input UpdateUserInput {
 input LoginUserInput {
   correo: String!
   contrasena: String!
+}
+
+input CrearNotificacionInput {
+  titulo: String!
+  usuarioId: Float!
+  tareaId: Float!
 }
