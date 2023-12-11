@@ -22,6 +22,7 @@
   import { CreateTaskInput, UpdateTaskInput } from '../models/inputs';
   import { CreateTaskRequest, UpdateTaskRequest } from 'src/grpc/interfaces/task.dto';
   import { RespuestaEliminacion } from '../models/salidas';
+  import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 //import { taskInfo } from 'os';
   
   
@@ -55,8 +56,8 @@
       const request: CreateTaskRequest = {
         titulo: input.titulo,
         descripcion: input.descripcion,
-        fechaInicio: input.fechaInicio,
-        fechaTermino: input.fechaTermino,
+        fechaInicio: Timestamp.fromDate(new Date(input.fechaInicio)),
+        fechaTermino: Timestamp.fromDate(new Date(input.fechaTermino)),
         userId: userResponse,
       };
     
@@ -86,10 +87,10 @@
     if (input.descripcion !== undefined) {
         request.descripcion = input.descripcion;
     if (input.fechaInicio !== undefined) {
-      request.fechaInicio = input.fechaInicio;
+      request.fechaInicio = Timestamp.fromDate(new Date(input.fechaInicio));
     }
     if (input.fechaTermino !== undefined) {
-        request.fechaTermino = input.fechaTermino;
+        request.fechaTermino = Timestamp.fromDate(new Date(input.fechaTermino));
       }
       if (input.userId !== undefined) {
         request.userId = userResponse;

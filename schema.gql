@@ -13,15 +13,34 @@ type RespuestaEliminacion {
   mensaje: ID!
 }
 
+type TaskModel {
+  id: ID!
+  titulo: String!
+  descripcion: String!
+  fechaInicio: DateTime!
+  fechaTermino: DateTime!
+  userId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   getUser(id: String!): UserModel!
   listUsers: [UserModel!]!
+  getTask(id: String!): TaskModel!
+  listTasks: [TaskModel!]!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserModel!
   updateUser(updateUserInput: UpdateUserInput!): UserModel!
   deleteUser(id: String!): RespuestaEliminacion!
+  createTask(createTaskInput: CreateTaskInput!): TaskModel!
+  updateTask(updateTaskInput: UpdateTaskInput!): TaskModel!
+  deleteTask(id: String!): RespuestaEliminacion!
 }
 
 input CreateUserInput {
@@ -31,9 +50,27 @@ input CreateUserInput {
   contrasena: String!
 }
 
+input CreateTaskInput {
+  id: ID!
+  titulo: String
+  descripcion: String
+  fechaInicio: DateTime
+  fechaTermino: DateTime
+  userId: String
+}
+
 input UpdateUserInput {
   id: ID!
   nombre: String
   apellido: String
   correo: String
+}
+
+input UpdateTaskInput {
+  id: ID!
+  titulo: String
+  descripcion: String
+  fechaInicio: DateTime
+  fechaTermino: DateTime
+  userId: String
 }

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package proto;
 
 option go_package = "github.com/ArquitecturaDeSistemas/taskmicroservice/src/proto";
@@ -15,17 +17,17 @@ service TaskService {
 message CreateTaskRequest {
   string titulo = 1;
   string descripcion = 2;
-  Date fechaInicio = 3;
-  Date fechaTermino = 4;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
   string userId = 5;
 }
 
 message CreateTaskResponse {
-    string titulo = 1;
-    string descripcion = 2;
-    Date fechaInicio = 3;
-    Date fechaTermino = 4;
-    string userId = 5;
+  string titulo = 1;
+  string descripcion = 2;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
+  string userId = 5;
 }
 
 message GetTaskRequest {
@@ -33,27 +35,27 @@ message GetTaskRequest {
 }
 
 message GetTaskResponse {
-    string titulo = 1;
-    string descripcion = 2;
-    Date fechaInicio = 3;
-    Date fechaTermino = 4;
-    string userId = 5;
+  string titulo = 1;
+  string descripcion = 2;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
+  string userId = 5;
 }
 
 message UpdateTaskRequest {
-    string titulo = 1;
-    string descripcion = 2;
-    Date fechaInicio = 3;
-    Date fechaTermino = 4;
-    string userId = 5;
+  string titulo = 1;
+  string descripcion = 2;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
+  string userId = 5;
 }
 
 message UpdateTaskResponse {
-    string titulo = 1;
-    string descripcion = 2;
-    Date fechaInicio = 3;
-    Date fechaTermino = 4;
-    string userId = 5;
+  string titulo = 1;
+  string descripcion = 2;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
+  string userId = 5;
 }
 
 message DeleteTaskRequest {
@@ -72,10 +74,10 @@ message ListTasksResponse {
 }
 
 message Task{
-    string titulo = 1;
-    string descripcion = 2;
-    Date fechaInicio = 3;
-    Date fechaTermino = 4;
-    string userId = 5;
+  string titulo = 1;
+  string descripcion = 2;
+  google.protobuf.Timestamp fechaInicio = 3;
+  google.protobuf.Timestamp fechaTermino = 4;
+  string userId = 5;
 }
 
