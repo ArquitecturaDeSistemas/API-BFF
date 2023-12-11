@@ -4,6 +4,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from 'src/users/user.module';
+import { TaskModule } from 'src/tasks/task.module'
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UserModule } from 'src/users/user.module';
       // Otras configuraciones como playground, context, etc.
     }),
     UserModule,
+    TaskModule,
   ],
   
 })

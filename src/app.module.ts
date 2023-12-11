@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './users/user.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { TaskModule } from './tasks/task.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       autoSchemaFile: 'schema.gql',
     }),
     UserModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
