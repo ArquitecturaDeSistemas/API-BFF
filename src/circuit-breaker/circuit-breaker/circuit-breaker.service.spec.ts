@@ -1,18 +1,39 @@
-import { Test, TestingModule } from '@nestjs/testing';
+/* eslint-disable prettier/prettier */
 import { CircuitBreakerService } from './circuit-breaker.service';
+import { throwError, of } from 'rxjs';
 
 describe('CircuitBreakerService', () => {
   let service: CircuitBreakerService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [CircuitBreakerService],
-    }).compile();
-
-    service = module.get<CircuitBreakerService>(CircuitBreakerService);
+  beforeEach(() => {
+    service = new CircuitBreakerService();
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('debería capturar errores del observable fuente', done => {
+    const sourceObservable = throwError(() => new Error('Error simulado'));
+    const circuitBreakerObservable = service.createCircuitBreaker(sourceObservable);
+
+    circuitBreakerObservable.subscribe({
+      next: () => {},
+      error: (error) => {
+        expect(error.message).toBe('Error simulado');
+        done();
+      }
+    });
   });
+
+  it('debería pasar con un observable exitoso', done => {
+    const sourceObservable = of('Test exitoso');
+    const circuitBreakerObservable = service.createCircuitBreaker(sourceObservable);
+
+    circuitBreakerObservable.subscribe({
+      next: (response) => {
+        expect(response).toBe('Test exitoso');
+        done();
+      },
+      error: () => {}
+    });
+  });
+
+  // Aquí puedes añadir más pruebas si es necesario
 });
