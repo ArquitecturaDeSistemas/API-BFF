@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './users/user.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CircuitBreakerModule } from './circuit-breaker/circuit-breaker.modules';
+import { TaskModule } from './tasks/task.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { CircuitBreakerModule } from './circuit-breaker/circuit-breaker.modules'
       autoSchemaFile: 'schema.gql',
     }),
     UserModule,
-    CircuitBreakerModule
+    CircuitBreakerModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
