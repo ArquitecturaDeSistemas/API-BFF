@@ -38,7 +38,6 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): UserModel!
   updateUser(updateUserInput: UpdateUserInput!): UserModel!
   deleteUser(id: String!): RespuestaEliminacion!
-  createTask(createTaskInput: CreateTaskInput!): TaskModel!
   updateTask(updateTaskInput: UpdateTaskInput!): TaskModel!
   deleteTask(id: String!): RespuestaEliminacion!
 }
@@ -48,15 +47,6 @@ input CreateUserInput {
   apellido: String!
   correo: String!
   contrasena: String!
-}
-
-input CreateTaskInput {
-  id: ID!
-  titulo: String
-  descripcion: String
-  fechaInicio: DateTime
-  fechaTermino: DateTime
-  userId: String
 }
 
 input UpdateUserInput {
